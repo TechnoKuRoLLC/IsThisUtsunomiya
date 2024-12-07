@@ -10,7 +10,7 @@ exports.sendImageToGPT = functions.https.onRequest(async (req, res) => {
     }
 
     // 環境変数からAPIキーを取得
-    const apiKey = functions.config().gpt.key;
+    const apiKey = functions.config().gpt?.key || process.env.API_KEY;
     if (!apiKey) {
       console.error('No API key configured');
       res.status(500).send('Server configuration error: No API key');
