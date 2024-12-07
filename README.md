@@ -13,11 +13,14 @@
 
 # 開発環境
 ## 画像解析エンジン
-ChatGPTs
-https://chatgpt.com/g/g-675450f113388191aa48124ec52898bf-yu-du-gong-imesipan-ding-asisutanto
+- ChatGPTs
+- https://chatgpt.com/g/g-675450f113388191aa48124ec52898bf-yu-du-gong-imesipan-ding-asisutanto
 ## フロント（アプリ）
-tauri
+- tauri
+- npm: 10.9.2
+- node: 18.20.5
+
 ## バック
-firebase functions
+- firebase functions
 
 
