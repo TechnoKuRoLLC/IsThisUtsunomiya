@@ -20,14 +20,22 @@ exports.sendImageToGPT = functions.https.onRequest(async (req, res) => {
     }
 
     // GPTエンドポイントへPOSTリクエスト
-    const response = await fetch('https://chatgpt.com/g/g-675450f113388191aa48124ec52898bf-yu-du-gong-imesipan-ding-asisutanto', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}` // APIキーをヘッダーとして付与
-      },
-      body: JSON.stringify({ image: base64Image })
-    });
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+            model: "g-675450f113388191aa48124ec52898bf-yu-du-gong-imesipan-ding-asisutanto",
+            messages: [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: "Hello!" }
+            ],
+            temperature: 0.7,
+            stream: false
+        })
+        });
 
     if (!response.ok) {
       const errorText = await response.text();
