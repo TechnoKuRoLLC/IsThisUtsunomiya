@@ -11,3 +11,13 @@
 - tauri を利用すること
 - エミュレータで動作できること
 
+# 開発環境
+## 画像解析エンジン
+ChatGPTs
+https://chatgpt.com/g/g-675450f113388191aa48124ec52898bf-yu-du-gong-imesipan-ding-asisutanto
+## フロント（アプリ）
+tauri
+## バック
+firebase functions
+
+
