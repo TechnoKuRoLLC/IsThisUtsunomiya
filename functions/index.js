@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const fetch = require('node-fetch');
+const { defineSecret } = require('firebase-functions/params');
 
 exports.sendImageToGPT = functions.https.onRequest(async (req, res) => {
   try {
@@ -10,7 +11,8 @@ exports.sendImageToGPT = functions.https.onRequest(async (req, res) => {
     }
 
     // 環境変数からAPIキーを取得
-    const apiKey = functions.config().gpt?.key || process.env.API_KEY;
+    const apiKeySecret = defineSecret('API_KEY')  || process.env.API_KEY;
+    const apiKey = apiKeySecret.value();
     if (!apiKey) {
       console.error('No API key configured');
       res.status(500).send('Server configuration error: No API key');
@@ -39,6 +41,6 @@ exports.sendImageToGPT = functions.https.onRequest(async (req, res) => {
 
   } catch (error) {
     console.error('Error processing request:', error);
-    res.status(500).send('Internal server error');
+    res.status(500).send('Internal server error: ' + error.message);
   }
 });
